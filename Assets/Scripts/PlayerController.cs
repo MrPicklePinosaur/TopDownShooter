@@ -10,24 +10,28 @@ public class PlayerController : MonoBehaviour {
     public float move_speed;
 
     private Animator anim;
+    private Rigidbody2D body;
     private bool isMoving;
     private Vector2 prevMove;
 
     // Start is called before the first frame update
     void Start() {
         anim = GetComponent<Animator>();
+        body = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update() {
 
         isMoving = false;
+        body.velocity = new Vector2(0, 0);
 
         //Check to see if there is actually input
         float input_x = Input.GetAxisRaw("Horizontal");
         float input_y = Input.GetAxisRaw("Vertical");
         if (Math.Abs(input_x) > INPUT_THRESHHOLD || Math.Abs(input_y) > INPUT_THRESHHOLD) {
-            transform.Translate(new Vector3(input_x * move_speed * Time.deltaTime, input_y * move_speed * Time.deltaTime, 0f));
+            //transform.Translate(new Vector3(input_x * move_speed * Time.deltaTime, input_y * move_speed * Time.deltaTime, 0f));
+            body.velocity = new Vector2(input_x * move_speed, input_y * move_speed);
             prevMove = new Vector2(input_x,input_y);
             isMoving = true;
         }
