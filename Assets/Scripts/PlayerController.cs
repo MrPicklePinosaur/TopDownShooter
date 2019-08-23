@@ -6,7 +6,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     private static float INPUT_THRESHHOLD = 0.5f;
+    private static bool isAlive = false;
 
+    [Range(0f,10f)]
     public float move_speed;
 
     private Animator anim;
@@ -20,6 +22,14 @@ public class PlayerController : MonoBehaviour {
         body = GetComponent<Rigidbody2D>();
 
         DontDestroyOnLoad(transform.gameObject);
+        /*
+        if (!isAlive) {
+            isAlive = true;
+            DontDestroyOnLoad(transform.gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+        */
     }
 
     // Update is called once per frame
@@ -41,10 +51,6 @@ public class PlayerController : MonoBehaviour {
         //Update animator
         anim.SetFloat("MoveX", input_x);
         anim.SetFloat("MoveY", input_y);
-        anim.SetFloat("PrevMoveX", prevMove.x);
-        anim.SetFloat("PrevMoveY", prevMove.y);
-        anim.SetBool("isMoving", isMoving);
-
 
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
+    private static bool isAlive = false;
+
     public float camera_speed;
     public GameObject target;
 
@@ -13,6 +15,14 @@ public class CameraController : MonoBehaviour {
     void Start() {
 
         DontDestroyOnLoad(transform.gameObject);
+        /*
+        if (!isAlive) { //check to see if object already exists when switching scenes
+            isAlive = true;
+            DontDestroyOnLoad(transform.gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+        */
     }
 
     // Update is called once per frame
