@@ -50,7 +50,7 @@
  </layer>
  <layer id="11" name="objects" width="16" height="16">
   <properties>
-   <property name="unity:SortingLayer" value="Entities"/>
+   <property name="unity:SortingLayer" value="Objects"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -73,7 +73,7 @@
  </layer>
  <layer id="12" name="object_details" width="16" height="16">
   <properties>
-   <property name="unity:SortingLayer" value="Entities"/>
+   <property name="unity:SortingLayer" value="Objects"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
