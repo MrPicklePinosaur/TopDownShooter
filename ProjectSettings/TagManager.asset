@@ -40,10 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Ground
     uniqueID: 3307535909
-    locked: 0
+    locked: 1
   - name: Objects
     uniqueID: 3476651973
-    locked: 0
+    locked: 1
   - name: Entities
     uniqueID: 3359282887
     locked: 0
@@ -52,4 +52,4 @@ TagManager:
     locked: 0
   - name: Roof
     uniqueID: 1399621669
-    locked: 0
+    locked: 1
