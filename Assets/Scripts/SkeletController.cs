@@ -37,6 +37,7 @@ public class SkeletController : MonoBehaviour {
         body.velocity = new Vector2(0, 0);
 
         float input_x = (float)Math.Cos(moveDirect);
+        Debug.Log(input_x,gameObject);
         float input_y = (float)Math.Sin(moveDirect);
 
         //Check to see if there is actually input
@@ -50,6 +51,9 @@ public class SkeletController : MonoBehaviour {
         //Update animator
         anim.SetFloat("MoveX", input_x);
         anim.SetFloat("MoveY", input_y);
+        anim.SetBool("isMoving", isMoving);
+        anim.SetFloat("PrevX", prevMove.x);
+        anim.SetFloat("PrevY", prevMove.y);
     }
     
 }
