@@ -18,22 +18,37 @@ public class SkeletController : MonoBehaviour {
 
     private Animator anim;
     private Rigidbody2D body;
-    private bool isMoving;
+    private bool isMoving = false; //start idle
     private Vector2 prevMove;
 
     [Header("AI Vars")]
     private float moveDirect; //an angle measurement, in radians
 
+    private float idleCounter = 0; //how long the skelet will stay idle
+    private float moveCounter = 0; //how long the skelet will wander for
+
     void Start() {
         anim = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
-
-        //decide which direction to move in
-        moveDirect = (float)(SkeletController.rand.Next(0, 360) * (Math.PI / 180));
+        
     } 
 
     void Update() {
-        isMoving = false;
+
+        //update counters
+        if (idleCounter <= 0 && !isMoving) { // if no longer idle, decide new direction to walk in
+            moveDirect = (float)(SkeletController.rand.Next(0, 360) * (Math.PI / 180));
+            moveCounter = rand.Next(2, 4); //decide random wander time
+            isMoving = true;
+        }
+        if (moveCounter <= 0 && isMoving) {
+            idleCounter = rand.Next(1, 5);
+            isMoving = false;
+        }
+
+        idleCounter -= Time.deltaTime;
+        moveCounter -= Time.deltaTime; 
+
         body.velocity = new Vector2(0, 0);
 
         float input_x = (float)Math.Cos(moveDirect);
@@ -41,11 +56,11 @@ public class SkeletController : MonoBehaviour {
         float input_y = (float)Math.Sin(moveDirect);
 
         //Check to see if there is actually input
-        if (move_speed > 0) {
+        if (isMoving) {
         
             body.velocity = new Vector2(input_x * move_speed, input_y * move_speed);
             prevMove = new Vector2(input_x, input_y);
-            isMoving = true;
+            
         }
 
         //Update animator
